@@ -1,0 +1,7 @@
+build/
+install/
+log/
+.vscode
+src/*.bmp
+.git_github
+.git_hidrive

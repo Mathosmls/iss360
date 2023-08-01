@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['magcaladddata_0',['magCalAddData',['../ahrs_cal_8h.html#ae3b4cbbac99d3cfc446054da389de8dd',1,'ahrsCal.h']]],
+  ['magcalcalculatematrix_1',['magCalCalculateMatrix',['../ahrs_cal_8h.html#a5e2ccc83850400e71c909ef6a2a4ce21',1,'ahrsCal.h']]],
+  ['magcalcreate_2',['magCalCreate',['../ahrs_cal_8h.html#ae1c19bf018761e4b95070a89bf5fbc15',1,'ahrsCal.h']]],
+  ['magcaldelete_3',['magCalDelete',['../ahrs_cal_8h.html#ae278375bf6b14ccbba3d967171dda871',1,'ahrsCal.h']]],
+  ['magcalgetdata_4',['magCalGetData',['../ahrs_cal_8h.html#a3a0c34404a43125d501a2abc0eef3512',1,'ahrsCal.h']]],
+  ['magcalgetdatacount_5',['magCalGetDataCount',['../ahrs_cal_8h.html#a621eaca9a41329f20ff7e9a4bd0a0d48',1,'ahrsCal.h']]],
+  ['magcalreset_6',['magCalReset',['../ahrs_cal_8h.html#abbfb2cc7137b4384e064dcdc3f5e327e',1,'ahrsCal.h']]],
+  ['matrix3x3multiply_7',['matrix3x3Multiply',['../isl_sdk_vector_8h.html#a22f729bc7b5b9a36b1ebb97d0c939dbe',1,'islSdkVector.h']]],
+  ['matrixequal_8',['matrixEqual',['../isl_sdk_vector_8h.html#a4220c24289591157dfb1662add983c94',1,'islSdkVector.h']]],
+  ['matrixfromdownandforward_9',['matrixFromDownAndForward',['../isl_sdk_vector_8h.html#af1d2985ee52c7e3ca77c57ef18da36bb',1,'islSdkVector.h']]],
+  ['matrixidentity_10',['matrixIdentity',['../isl_sdk_vector_8h.html#a590a59a66c1c3d5914197cfc0aeae672',1,'islSdkVector.h']]],
+  ['matrixrotatevector_11',['matrixRotateVector',['../isl_sdk_vector_8h.html#a543581228dd63792e0a88939a6a293a1',1,'islSdkVector.h']]],
+  ['memget16bit_12',['memGet16Bit',['../mem_8h.html#a129de6747925ccb8d2cf05366acd7f4d',1,'mem.h']]],
+  ['memget32bit_13',['memGet32Bit',['../mem_8h.html#a22fbc8468f416d38b9a6fa38f85afb96',1,'mem.h']]],
+  ['memget48bit_14',['memGet48Bit',['../mem_8h.html#ad6298bbe5215255774c3f5a8a4925b8c',1,'mem.h']]],
+  ['memget64bit_15',['memGet64Bit',['../mem_8h.html#a30070c183e5a8380fec25e40bb3eeeba',1,'mem.h']]],
+  ['memgetdouble64_16',['memGetDouble64',['../mem_8h.html#ad2798895ecfa601ae46ddbc46817db09',1,'mem.h']]],
+  ['memgetfloat32_17',['memGetFloat32',['../mem_8h.html#a056a25bce32ae33cb07dd48f748a0886',1,'mem.h']]],
+  ['meminitialise_18',['memInitialise',['../mem_8h.html#af74ee95c4be1f201665cb88139ac1a6e',1,'mem.h']]],
+  ['mempack16bit_19',['memPack16Bit',['../mem_8h.html#ae0d48d7489b5749a7b1e8cae955d1158',1,'mem.h']]],
+  ['mempack32bit_20',['memPack32Bit',['../mem_8h.html#aaaf19052021b590ee32ab60d9733a32e',1,'mem.h']]],
+  ['mempack48bit_21',['memPack48Bit',['../mem_8h.html#a4ae33cbb49388f4203edc32e91ee52b6',1,'mem.h']]],
+  ['mempack64bit_22',['memPack64Bit',['../mem_8h.html#a2d6f24378bb6ab369ab3f14583a7bf55',1,'mem.h']]],
+  ['mempackdouble64_23',['memPackDouble64',['../mem_8h.html#adf507e23a3fcb165a31105fa59a266d0',1,'mem.h']]],
+  ['mempackfloat32_24',['memPackFloat32',['../mem_8h.html#ad57c226f5c8c97129d445bf0000f7b51',1,'mem.h']]]
+];

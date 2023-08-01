@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ISS360 sn="1660.0017" firmwareVersion="3.0.5" build="2">
+    <settings>
+        <system>
+            <!-- <macAddress>80:1F:12:66:5A:D4</macAddress> -->
+            <!-- <uartMode>RS232</uartMode> -->
+            <!-- <baudrate>115200</baudrate> -->
+            <!-- <ipAddress>192.168.1.200</ipAddress>
+            <netmask>255.255.255.0</netmask>
+            <gateway>192.168.1.1</gateway>
+            <port>33005</port>
+            <phyPortMode>PHY_AUTO</phyPortMode>
+            <phyMdixMode>MDIX_NORMAL</phyMdixMode> -->
+            <useDhcp>false</useDhcp>
+            <invertHeadDirection>false</invertHeadDirection>
+            <ahrsOptions>0</ahrsOptions>
+            <headingOffset>0.000</headingOffset>
+        </system>
+        <!-- <orientationOffset>
+            <w>1.000000</w>
+            <x>0.000000</x>
+            <y>0.000000</y>
+            <z>0.000000</z>
+        </orientationOffset>
+        <turnsAbout>
+            <x>0.000000</x>
+            <y>0.000000</y>
+            <z>1.000000</z>
+        </turnsAbout> -->
+        <turnsAboutEarthFrame>false</turnsAboutEarthFrame>
+        <tvg>
+            <point id="1">
+                <x units="m">0.000000</x>
+                <y units="dB">10.000000</y>
+            </point>
+            <point id="2">
+                <x units="m">25.000000</x>
+                <y units="dB">28.000000</y>
+            </point>
+            <point id="3">
+                <x units="m">50.000000</x>
+                <y units="dB">40.000000</y>
+            </point>
+            <point id="4">
+                <x units="m">75.000000</x>
+                <y units="dB">46.000000</y>
+            </point>
+            <point id="5">
+                <x units="m">100.000000</x>
+                <y units="dB">48.000000</y>
+            </point>
+            <point id="6">
+                <x units="m">125.000000</x>
+                <y units="dB">48.000000</y>
+            </point>
+            <point id="7">
+                <x units="m">150.000000</x>
+                <y units="dB">48.000000</y>
+            </point>
+            <point id="8">
+                <x units="m">175.000000</x>
+                <y units="dB">48.000000</y>
+            </point>
+            <point id="9">
+                <x units="m">200.000000</x>
+                <y units="dB">48.000000</y>
+            </point>
+        </tvg>
+        <acoustic>
+            <txStartFrequency>600000</txStartFrequency>
+            <txEndFrequency>900000</txEndFrequency>
+            <txPulseWidthUs>200</txPulseWidthUs>
+            <txPulseAmplitude>80</txPulseAmplitude>
+            <highSampleRate>false</highSampleRate>
+        </acoustic>
+        <setup>
+            <digitalGain>180.00</digitalGain>
+            <speedOfSound>1482.00</speedOfSound>
+            <stepSize>100</stepSize>
+            <sectorStart>0</sectorStart>
+            <sectorSize>0</sectorSize>
+            <flybackMode>true</flybackMode>
+            <minRangeMm>0</minRangeMm>
+            <maxRangeMm>8000</maxRangeMm>
+            <imageDataPoints>400</imageDataPoints>
+            <data8Bit>false</data8Bit>
+        </setup>
+    </settings>
+    <ahrsCal>
+        <gyroBias>
+            <x>4.048799</x>
+            <y>0.349300</y>
+            <z>-0.127400</z>
+        </gyroBias>
+        <accelBias>
+            <x>0.002117</x>
+            <y>-0.004462</y>
+            <z>0.043447</z>
+        </accelBias>
+        <magBias>
+            <x>-2.524737</x>
+            <y>-1.939334</y>
+            <z>23.757444</z>
+        </magBias>
+        <accelTransform>
+            <m00>0.992513</m00>
+            <m01>-0.014327</m01>
+            <m02>0.014160</m02>
+            <m10>0.014519</m10>
+            <m11>0.992987</m11>
+            <m12>-0.012967</m12>
+            <m20>-0.014036</m20>
+            <m21>0.013227</m21>
+            <m22>0.997185</m22>
+        </accelTransform>
+        <magTransform>
+            <m00>1.468009</m00>
+            <m01>-0.076353</m01>
+            <m02>-0.120230</m02>
+            <m10>-0.076353</m10>
+            <m11>1.455859</m11>
+            <m12>-0.100375</m12>
+            <m20>-0.120230</m20>
+            <m21>-0.100375</m21>
+            <m22>1.278245</m22>
+        </magTransform>
+    </ahrsCal>
+</ISS360>
