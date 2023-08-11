@@ -78,21 +78,25 @@ public:
         auto publish_scan_desc = rcl_interfaces::msg::ParameterDescriptor{};
         auto publish_ping_desc = rcl_interfaces::msg::ParameterDescriptor{};
         auto threshold_desc = rcl_interfaces::msg::ParameterDescriptor{};
+        auto nb_first_data_points_ignored_desc = rcl_interfaces::msg::ParameterDescriptor{};
 
         publish_image_desc.description = "If = 'true', publish image produced by the sonar";
         publish_scan_desc.description = "If = 'true', publish the sonar scan = the distance where an obstacle is found for all the possible angles ";
         publish_ping_desc.description = "If = 'true', publish all the intensities values for one sonar ping/echo (for one angle) ";
-        publish_ping_desc.description = "Intensity value that we consider as an obstacle = this parameter * max intensity";
+        threshold_desc.description = "Intensity value that we consider as an obstacle = this parameter * max intensity";
+        nb_first_data_points_ignored_desc.description = "Number of the first data points ignored for the laser_scan msg. All the ping points from the first one to the numbre in this parameter will not be taken into account in the obstacle detection (because the sonar can see the robot on which it is mounted)";
 
         this->declare_parameter("publish_image", true, publish_image_desc);
         this->declare_parameter("publish_scan", true, publish_scan_desc);
         this->declare_parameter("publish_ping", true, publish_ping_desc);
-        this->declare_parameter("threshold_obstacle", 0.6, threshold_desc);
+        this->declare_parameter("threshold_obstacle", 0.1, threshold_desc);
+        this->declare_parameter("nb_first_data_points_ignored", 20, nb_first_data_points_ignored_desc);
 
         publish_image = this->get_parameter("publish_image").as_bool();
         publish_scan = this->get_parameter("publish_scan").as_bool();
         publish_ping = this->get_parameter("publish_ping").as_bool();
         threshold = this->get_parameter("threshold_obstacle").as_double();
+        nb_first_data_points_ignored = this->get_parameter("nb_first_data_points_ignored").as_int();
 
         if (publish_scan)
             publisher_scan = this->create_publisher<sensor_msgs::msg::LaserScan>("iss_360_scan", 10);
@@ -166,12 +170,15 @@ private:
                 {
                     nb_angle = std::ceil((float)settings_iss360.sectorSize / (float)settings_iss360.stepSize) + 1;
                 }
+                if (nb_first_data_points_ignored>=(int)settings_iss360.imageDataPoint)
+                    nb_first_data_points_ignored=(int)settings_iss360.imageDataPoint-1;
                 printLog("nb_angle  %d ", nb_angle);
                 sonar_scan.ranges.resize(nb_angle);
                 sonar_scan.intensities.resize(nb_angle);
                 iss360_data->new_setting = false;
                 sonar_scan.time_increment = -1;
                 old_time_scan = this->now().seconds();
+                printLog("END INIT \n\n");
             }
 
             // ------------------ ROS MESSAGES, LASER SCAN AND CUSTOM MESSAGE ------------------------
@@ -183,12 +190,11 @@ private:
 
                 sonar_ping.header.stamp = now;
                 sonar_ping.intensities.assign(iss360_data->last_ping.data, iss360_data->last_ping.data + iss360_data->last_ping.dataCount);
-                int i_obstacle = sonar_ping.intensities.begin() - std::upper_bound(sonar_ping.intensities.begin(), sonar_ping.intensities.end(), (threshold * pow(256, (2 - settings_iss360.data8Bit))));
-                sonar_ping.range = settings_iss360.minRangeMm + ((settings_iss360.maxRangeMm - settings_iss360.minRangeMm) / ((float)settings_iss360.imageDataPoint - 1.0) * i_obstacle);
+                int i_obstacle =  std::upper_bound(sonar_ping.intensities.begin()+nb_first_data_points_ignored, sonar_ping.intensities.end(), (threshold *pow(256.0, (2.0 - settings_iss360.data8Bit))))-sonar_ping.intensities.begin();
+                sonar_ping.range = ((float)settings_iss360.minRangeMm* 0.001 + (((float)settings_iss360.maxRangeMm* 0.001  - (float)settings_iss360.minRangeMm* 0.001 ) / ((float)settings_iss360.imageDataPoint - 1.0) * i_obstacle));
 
                 if (publish_scan)
                 {
-                    printLog("   !!  here 1  !!  ");
 
                     if (!read_duration)
                     {
@@ -211,7 +217,6 @@ private:
 
                         sonar_scan.ranges[index] = sonar_ping.range;
                         sonar_scan.intensities[index] = sonar_ping.intensities[i_obstacle];
-                         printLog("   !!  here  !!  ");
 
                         if ((std::abs(angle_ran) < settings_iss360.stepSize) ||
                             (angle_ran >= static_cast<int>(settings_iss360.sectorSize) && !settings_iss360.flybackMode) && publish_scan)
@@ -221,7 +226,7 @@ private:
 
                                 sonar_scan.scan_time = now.seconds() - old_time_scan;
                                 publisher_scan->publish(sonar_scan);
-                                printLog("   !!   PUBLISH  !!  ");
+                                //printLog("   !!   PUBLISH  !!  ");
                                 sonar_scan.time_increment = -1;
                                 read_duration = false;
                                 old_time_scan = now.seconds();
@@ -229,7 +234,7 @@ private:
                             else
                             {
                                 dont_publish_next = false;
-                                printLog("   !!  NOT PUBLISHED  !!  ");
+                                //printLog("   !!  NOT PUBLISHED  !!  ");
                             }
                         }
                     }
@@ -355,7 +360,7 @@ private:
     int angle_ran = 0;
     int index = 0;
     int nb_angle = 0;
-    int threshold;
+    float threshold;
     uint16_t last_angle = 34464;
 
     double old_time_increment = 0.0;
@@ -370,6 +375,7 @@ private:
     bool publish_image;
     bool publish_scan;
     bool publish_ping;
+    int nb_first_data_points_ignored;
 
     int publish2fast;
     bool connect = false;
@@ -465,7 +471,7 @@ static void newPort(SysPort &inst)
 
     if (inst.type == PORT_NETWORK)
     {
-        uint32_t ipAddress = IP_TO_UINT(192, 168, 1, 200);
+        uint32_t ipAddress = IP_TO_UINT(10, 100, 0, 200);
         inst.startDiscovery(0, 0, PID_ANY, ipAddress, 33005, 1000);
     }
     else if (inst.type == PORT_SERIAL || inst.type == PORT_SOL)

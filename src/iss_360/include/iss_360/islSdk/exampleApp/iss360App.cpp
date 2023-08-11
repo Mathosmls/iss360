@@ -21,7 +21,7 @@ Iss360App::Iss360App(void)
 	printLog("------------\n d    Set settings to defualt\n s    Save settings to file\n u    Update firmware\n p    Start scanning\n P    Stop scanning\n------------\n");
 	m_pingCount = 0;
 	m_palette.setToDefault();
-	m_sonarImage.setBilinerInterpolation(true);
+	m_sonarImage.setBilinerInterpolation(false);
 	m_sonarTexture.setBilinerInterpolation(false);
 }
 //--------------------------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ void Iss360App::doTask(int32_t key, const str_t *path)
 	case 'l':
 	{
 		auto path = current_path().string();
-		path += "/src/sonar2/config/iss360_settings.xml";
+		path += "/src/iss_360/config/iss360_settings.xml";
 		deviceInfo_t info_temp;
 		iss360Settings_t settings_temp;
 		iss360AhrsCal_t ahrsCal_temp;
@@ -194,7 +194,7 @@ void Iss360App::callbackConnect(Device &device)
 {
 	printLog("ISS360 %04u-%04u connected and ready\n", device.info.pn, device.info.sn);
 	m_sonarImage.setBuffer(800, 800, TRUE);
-	m_sonarImage.setSectorArea(0, m_iss360->settings.setup.maxRangeMm, m_iss360->settings.setup.sectorStart, m_iss360->settings.setup.sectorSize);
+	m_sonarImage.setSectorArea(0, m_iss360->settings.setup.maxRangeMm, 0, 0);
 
 	// Optimal texture size to pass to the GPU - each pixel represents a data point. The GPU can then map this texture to circle (triangle fan)
 	m_sonarTexture.setBuffer(m_iss360->settings.setup.imageDataPoint, 12800 / mathAbsInt(m_iss360->settings.setup.stepSize), TRUE);
@@ -301,7 +301,7 @@ void Iss360App::callbackSettingsUpdated(Iss360 &iss360, bool_t ok, uint32_t set)
 	if (ok)
 	{
 		printLog("Settings updated ok\n");
-		m_sonarImage.setSectorArea(0, m_iss360->settings.setup.maxRangeMm, m_iss360->settings.setup.sectorStart, m_iss360->settings.setup.sectorSize);
+		m_sonarImage.setSectorArea(0, m_iss360->settings.setup.maxRangeMm, 0, 0);
 
 		m_sonarTexture.setBuffer(m_iss360->settings.setup.imageDataPoint, 12800 / mathAbsInt(m_iss360->settings.setup.stepSize), TRUE);
 		m_sonarTexture.setSectorArea(0, m_iss360->settings.setup.maxRangeMm, m_iss360->settings.setup.sectorStart, m_iss360->settings.setup.sectorSize);
@@ -319,7 +319,7 @@ void Iss360App::callbackPwrAndTemp(Iss360 &iss360, const cpuPwrTemp_t &data)
 //--------------------------------------------------------------------------------------------------
 void Iss360App::callbackPingData(Iss360 &iss360, const iss360Ping_t &data)
 {
-	printLog("Ping data\n");
+	// printLog("Ping data\n");
 	m_iss360->image.render(m_sonarImage, &m_palette);
 	m_iss360->image.renderTexture(m_sonarTexture, &m_palette);
 	m_iss360->last_ping = data;

@@ -62,7 +62,7 @@ SonarImageBuf::SonarImageBuf()
 	m_buf.area.maxRangeMm = 0;
 	m_buf.area.sector.start = 0;
 	m_buf.area.sector.size = 0;
-	m_buf.useBilinerInterpolation = true;
+	m_buf.useBilinerInterpolation = false;
 	m_buf.use32BitBuffer = true;
 }
 //--------------------------------------------------------------------------------------------------

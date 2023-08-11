@@ -7,6 +7,7 @@ My code is not very well optimized and clean but it works 0:)
 - Due to a bug in the SDK, the sonar can only run at 9600 bauds if you use USB. It's very slow but impactSubSea is working on that.
 - This program work mainly with thread and event. But publishing images needs a little to much time. So when you set the precision of the sonar pretty high (under 250), the published image is only updated one out of four times a new ping is added to the image. 
 - You can have some warnings when you build this repo, ignore them it's just about unused variable in the SDK.
+- **If you have some problem to load the parameter (when you press l), maybe the path of your xml parameter file is wrong**. Check the error message to see from where the program try to read the new parameters and compare it with line 161 in 'iss_360/include/iss_360/islSdk/exampleApp/iss360App.cpp'
 
 # Dependancies
  Besides ros2 you need to install image_tranport :

@@ -1,6 +1,8 @@
 build/
 install/
 log/
+Rosbag2_ThresholdObstacle_0_60/
+RosbagThresholdObstacle_0_20/
 .vscode
 src/*.bmp
 .git_github

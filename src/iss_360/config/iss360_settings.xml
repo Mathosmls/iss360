@@ -74,14 +74,14 @@
             <highSampleRate>false</highSampleRate>
         </acoustic>
         <setup>
-            <digitalGain>180.00</digitalGain>
+            <digitalGain>80.00</digitalGain>
             <speedOfSound>1482.00</speedOfSound>
             <stepSize>100</stepSize>
             <sectorStart>0</sectorStart>
             <sectorSize>0</sectorSize>
             <flybackMode>true</flybackMode>
             <minRangeMm>0</minRangeMm>
-            <maxRangeMm>8000</maxRangeMm>
+            <maxRangeMm>3000</maxRangeMm>
             <imageDataPoints>400</imageDataPoints>
             <data8Bit>false</data8Bit>
         </setup>
