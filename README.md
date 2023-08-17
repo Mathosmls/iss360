@@ -19,14 +19,14 @@ In your ros2 workspace :
 ```
 colcon build
 . install/setup.bash 
-ros2 run iss360_pub iss360_pub
+ros2 run iss_360 iss_360
 ```
 
 # Published topics 
 
 The node publishes 3 main messages : 
 
-- `iss_360_scan`, `sensor_msgs::msg::LaserScan` : can be used for 2d mapping. It contains the distance where there is an obstacle for all the pings made in one sonar rotation (full one or just the predefined sector).
+- `iss_360_scan`, `sensor_msgs::msg::LaserScan` : can be used for 2d mapping. It contains the distance where there is an obstacle for all the pings made in one sonar rotation (full one or just the predefined sector).  
 
 - `iss_360_ping`, custom `sonar_ping_msgs::msg::SonarPing` : intensities values for one ping.
 
